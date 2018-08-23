@@ -17,16 +17,19 @@ exports.create = (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    cpassword: req.body.confirmPassword
+    confirmPassword: req.body.confirmPassword
   });
+  console.log(user);
   user
     .save()
     .then(data => {
       res.status(200).send(data);
+      console.log(`Data step 2 ${data}`);
     })
     .catch(err => {
-      res
-        .status(500)
-        .send({ message: "An error occurred while trying to create the user" });
+      res.status(500).send({
+        message:
+          err.message || "An error occurred while trying to create the user"
+      });
     });
 };

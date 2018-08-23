@@ -29,13 +29,13 @@ mongoose
   });
 
 // Initialize passport
-app.use(
-  require("express-session")({
-    secret: "keyboard cat",
-    resave: false,
-    saveUninitialized: false
-  })
-);
+// app.use(
+//   require("express-session")({
+//     secret: "keyboard cat",
+//     resave: false,
+//     saveUninitialized: false
+//   })
+// );
 // app.use(passport.initialize());
 // app.use(passport.session());
 
@@ -44,14 +44,14 @@ app.use(
 // passport.deserializeUser(User.deserializeUser());
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
+// app.set("views", path.join(__dirname, "views"));
+// app.set("view engine", "jade");
 
-app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(logger("dev"));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, "public")));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
