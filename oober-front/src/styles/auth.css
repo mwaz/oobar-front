@@ -1,0 +1,14 @@
+.login-card {
+    width: 35rem;
+}
+.signup-card {
+    width: 35rem;
+}
+.space {
+    padding-top: 1%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 9rem
+}
+.card-title {
+    align-items: center
+}
