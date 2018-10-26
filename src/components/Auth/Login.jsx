@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../styles/auth.css';
 import {Button} from '../Common/Button';
+import {Link} from 'react-router-dom';
 
 export default class Login extends React.Component {
     
@@ -15,15 +16,16 @@ render () {
         </div>
         <div className="card-body">
         <div className="form-group">
-        <label for="username" className="mx-auto"> Username </label>
+        <label htmlFor="username" className="mx-auto"> Username </label>
         <input type="text" className="form-control" id="username" placeholder="Username" />
         </div>
         <div className="form-group">
-        <label for="password" className="mx-auto"> Password </label>
+        <label htmlFor="password" className="mx-auto"> Password </label>
         <input type="password" className="form-control" id="password" placeholder="Password" />
         </div>
         <div className="form-group">
         <Button className="btn btn-primary"  children={"Login"}/>
+        <div className="row card-bottom-text"> New User? <Link to="/signup"> Signup here</Link> </div>
         </div>
             </div>
             </div>

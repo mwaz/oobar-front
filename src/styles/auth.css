@@ -1,6 +1,9 @@
 .login-card {
     width: 35rem;
 }
+.card-bottom-text {
+    float: right;
+}
 .signup-card {
     width: 35rem;
 }
