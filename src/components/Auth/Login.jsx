@@ -2,9 +2,25 @@ import React from 'react';
 import '../../styles/auth.css';
 import {Button} from '../Common/Button';
 import {Link} from 'react-router-dom';
-
-export default class Login extends React.Component {
-    
+import {userLogin} from '../../redux/actions/authActionCreators/registration'
+import {connect} from 'react-redux'
+class Login extends React.Component {
+    constructor (props){
+        super(props)
+        this.state = {
+            data: {
+            username: '',
+            password: ''
+        }
+    }
+    }
+    onChange =  e => {
+        this.setState({data : { ...this.state.data, [e.target.name]: e.target.value}
+        })}
+    handleLogin() {
+        this.props.userLogin(this.state.data, )
+    }
+   
 render () {
     return (
         <div className="container">
@@ -17,14 +33,14 @@ render () {
         <div className="card-body">
         <div className="form-group">
         <label htmlFor="username" className="mx-auto"> Username </label>
-        <input type="text" className="form-control" id="username" placeholder="Username" />
+        <input type="text" className="form-control" id="username" name="username" onChange={this.onChange} placeholder="Username" />
         </div>
         <div className="form-group">
         <label htmlFor="password" className="mx-auto"> Password </label>
-        <input type="password" className="form-control" id="password" placeholder="Password" />
+        <input type="password" className="form-control" id="password" name="password" onChange={this.onChange} placeholder="Password" />
         </div>
         <div className="form-group">
-        <Button className="btn btn-primary"  children={"Login"}/>
+        <Button className="btn btn-primary"  children={"Login"} onClick={this.handleLogin}/>
         <div className="row card-bottom-text"> New User? <Link to="/signup"> Signup here</Link> </div>
         </div>
             </div>
@@ -34,3 +50,4 @@ render () {
     )
 }
 }
+export default connect(null, {userLogin})(Login)

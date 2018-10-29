@@ -2,11 +2,11 @@ import React from 'react';
 import '../../styles/auth.css';
 import {connect} from 'react-redux'
 import {Button} from '../Common/Button';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {userRegistration} from '../../redux/actions/authActionCreators/registration'
 import Proptypes from 'prop-types';
 
-export class Signup extends React.Component {
+class Signup extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -25,8 +25,7 @@ export class Signup extends React.Component {
     }
 
    submit = () => {
-      userRegistration(this.state.data);
-    //   signup.signup(this.state.data)
+      this.props.userRegistration(this.state.data);
    }
 render () {
     const { success, data } = this.state
@@ -74,4 +73,5 @@ render () {
 Signup.proptype = {
     userRegistration: Proptypes.func.isRequired
 };
-export default connect(null, {userRegistration})(userRegistration)
+
+export default withRouter(connect(null, {userRegistration})(Signup))

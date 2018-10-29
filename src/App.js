@@ -4,7 +4,7 @@ import "./styles/App.css";
 import { Switch, Route } from "react-router-dom";
 
 import Login from "./components/Auth/Login";
-import { Signup } from "./components/Auth/Signup";
+import Signup  from "./components/Auth/Signup";
 
 // ReactDOM.render(<Signup />, document.getElementById("root"));
 
