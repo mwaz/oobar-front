@@ -2,17 +2,19 @@ import * as authTypes from "../../types/authTypes";
 
 const registerUser = user => ({
   type: authTypes.REGISTER_USER,
-  user
+  payload: user.data,
+  loading: false
 });
 
-const registrationErrors = error => ({
-  type: authTypes.FAILED_REGISTRATION,
+const authErrors = error => ({
+  type: authTypes.AUTH_FAILURE,
   error
 });
 
 const loginUser = data => ({
   type: authTypes.LOGIN_USER,
-  data
+  payload: data,
+  loading: false
 });
 
 const registrationStates = filter => ({
@@ -20,4 +22,4 @@ const registrationStates = filter => ({
   filter
 });
 
-export { registerUser, loginUser, registrationStates, registrationErrors };
+export { registerUser, loginUser, registrationStates, authErrors };

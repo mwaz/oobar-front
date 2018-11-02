@@ -4,29 +4,39 @@ import {Button} from '../Common/Button';
 import {Link} from 'react-router-dom';
 import {userLogin} from '../../redux/actions/authActionCreators/registration'
 import {connect} from 'react-redux'
+import {PropTypes} from 'prop-types'
 class Login extends React.Component {
-    constructor (props){
+    constructor(props){
         super(props)
         this.state = {
             data: {
-            username: '',
-            password: ''
+                username:'',
+                password: '',
+            },
+            success: false
         }
-    }
     }
     onChange =  e => {
         this.setState({data : { ...this.state.data, [e.target.name]: e.target.value}
         })}
-    handleLogin() {
-        this.props.userLogin(this.state.data, )
+
+    handleLogin = () => {
+        this.props.userLogin(this.state.data)
     }
    
 render () {
+    const {userData} = this.props
+
     return (
         <div className="container">
         <div className="space row justify-content-center align-items-center"> Oober </div>
         <div className="login-card card mx-auto shadow p-4 mb-4 bg-white rounded"> 
         <div className="card-body">
+        {userData &&
+        <div className="alert alert-danger" role="alert">  
+  {userData.data.message}
+</div>
+        }
         <div className ="card-title row justify-content-center align-items-center">
        Hey <span role="img" aria-label="wave-emoji">👋 </span> Kindly input your login credentials
         </div>
@@ -50,4 +60,13 @@ render () {
     )
 }
 }
-export default connect(null, {userLogin})(Login)
+
+Login.prototypes = {
+    handleLogin: PropTypes.func.isRequired
+}
+
+function mapStateToProps (state) {
+return {userData: state.users.response}
+}
+
+export default connect(mapStateToProps, {userLogin})(Login)

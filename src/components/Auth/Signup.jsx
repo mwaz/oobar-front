@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/auth.css';
 import {connect} from 'react-redux'
 import {Button} from '../Common/Button';
-import {Link, withRouter} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {userRegistration} from '../../redux/actions/authActionCreators/registration'
 import Proptypes from 'prop-types';
 
@@ -25,10 +25,15 @@ class Signup extends React.Component {
     }
 
    submit = () => {
-      this.props.userRegistration(this.state.data);
+      this.props.userRegistration(this.state.data)
    }
 render () {
     const { success, data } = this.state
+    const {userData, redirect } = this.props
+    
+    if (redirect) {
+        return <Redirect to={{ pathname: '/login' }} />;
+      }
     return (
         <div className="container">
         <div className="space row justify-content-center align-items-center"> Oober </div>
@@ -37,8 +42,12 @@ render () {
          <div className="alert alert-success" role="alert">
         Welcome {data.username}
        </div>  : '' }
-       
         <div className="card-body">
+        {userData &&
+        <div className="alert alert-danger" role="alert">  
+  {userData.data.message}
+</div>
+        }
         <div className ="card-title row justify-content-center align-items-center">
        Hey <span role="img" aria-label="wave-emoji">👋 </span> Kindly input your details
         </div>
@@ -73,5 +82,11 @@ render () {
 Signup.proptype = {
     userRegistration: Proptypes.func.isRequired
 };
+function mapStateToProps (state) {
+    return {userData: state.users.response,
+    redirect:state.users.redirect,
+    }
+    }
 
-export default withRouter(connect(null, {userRegistration})(Signup))
+
+export default connect(mapStateToProps, {userRegistration})(Signup)
