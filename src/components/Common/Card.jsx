@@ -1,13 +1,13 @@
 import React from 'react'
 
-function Card(props){
+const Card = (props) => {
     return(
-        <div class={props.cardColClass}>
+        <div className={props.cardColClass} key={props.index}>
             <div className={props.cardBorder} style={props.cardStyle}>
                 {props.image}
-              <div class="card-body">
-                <h5 class="card-title">{props.cardTitle}</h5>
-                <p class="card-text">
+              <div className="card-body">
+                <h5 className="card-title">{props.cardTitle}</h5>
+                <p className="card-text">
                  {props.username}
                  {props.email}
                  {props.cardText}
@@ -19,4 +19,4 @@ function Card(props){
     )
 }
 
-export default Card
+export default Card 

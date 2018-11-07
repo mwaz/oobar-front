@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/auth.css';
 import {Button} from '../Common/Button';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {userLogin} from '../../redux/actions/authActionCreators/registration'
 import {connect} from 'react-redux'
 import {PropTypes} from 'prop-types'
@@ -25,7 +25,11 @@ class Login extends React.Component {
     }
    
 render () {
-    const {userData} = this.props
+    const {userData, redirect} = this.props
+    
+    if (redirect) {
+        return <Redirect to={{ pathname: '/dashboard' }} />;
+      }
 
     return (
         <div className="container">
@@ -66,7 +70,8 @@ Login.prototypes = {
 }
 
 function mapStateToProps (state) {
-return {userData: state.users.response}
+return {userData: state.users.response,
+redirect: state.users.loggedIn}
 }
 
 export default connect(mapStateToProps, {userLogin})(Login)
